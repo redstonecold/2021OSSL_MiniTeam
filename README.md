@@ -28,5 +28,5 @@ __3. 팀소개 및 팀원이 맡은 역할__<br>
 __팀소개__ : 2021 OSSL 2분반 20조 미니프로젝트 팀입니다!
 
 __팀원__<br>
-__윤동혁__(diggyDogg) : 개발<br>
-__홍석찬__(redstonecold) : 개발
+윤동혁(diggyDogg) : 개발<br>
+홍석찬(redstonecold) : 개발

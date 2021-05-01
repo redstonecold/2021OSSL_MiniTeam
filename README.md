@@ -3,7 +3,7 @@
 __1.Mini Project 주제__
 : 팀 모임 출석 명단
 
-__2. Mini Project가 가지고 있는 대략적인 기능 설명__<p>
+__2. Mini Project가 가지고 있는 대략적인 기능 설명__<br>
 
 text 파일 형태 :
 날짜 학생명 출석여부
@@ -24,9 +24,9 @@ Delete : 해당 line 삭제
 
 추가 helper function : selectMenu(), selectDataNo()
 
-__3. 팀소개 및 팀원이 맡은 역할__
-팀소개 : 2021 OSSL 2분반 20조 미니프로젝트 팀입니다!
+__3. 팀소개 및 팀원이 맡은 역할__<br>
+__팀소개__ : 2021 OSSL 2분반 20조 미니프로젝트 팀입니다!
 
-팀원<p>
-__윤동혁__(diggyDogg) : 개발<p>
+__팀원__<br>
+__윤동혁__(diggyDogg) : 개발<br>
 __홍석찬__(redstonecold) : 개발

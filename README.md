@@ -1,7 +1,7 @@
 # 2021OSSL_MiniTeam
 
 __1.Mini Project 주제__
-: 팀 모임 출석 명단
+: 팀 모임 출석 명단<p>
 
 __2. Mini Project가 가지고 있는 대략적인 기능 설명__<br>
 
@@ -22,11 +22,10 @@ Delete : 해당 line 삭제
 
 추가 파일 관련 함수 : 파일 저장 함수, 파일 불러오기 함수
 
-추가 helper function : selectMenu(), selectDataNo()
+추가 helper function : selectMenu(), selectDataNo()<p>
 
 __3. 팀소개 및 팀원이 맡은 역할__<br>
-__팀소개__ : 2021 OSSL 2분반 20조 미니프로젝트 팀입니다!
-
+__팀소개__ : 2021 OSSL 2분반 20조 미니프로젝트 팀입니다!<br>
 __팀원__<br>
 윤동혁(diggyDogg) : 개발<br>
 홍석찬(redstonecold) : 개발

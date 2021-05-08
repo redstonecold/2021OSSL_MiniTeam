@@ -3,12 +3,12 @@
 
 typedef struct{
     char date[10];
-    char name[60];
+    char name[60]; //이름으로
     char attendance;
 } List;
 
 int createList(List *l);
-void readList(List *l); 
+void readList(List l); //parameter 수정함
 void listList(List* l, int count);
 int updateList(List *l);   
 int deleteList(List *l);      

@@ -4,7 +4,7 @@
 
 int selectMenu(){
     int snum;
-    printf("\n*** MiniProject <출석 명단>  ***\n1.출석 데이타 조회 \n2. 출석 데이타 추가\n3. 출석 데이타 수정\n4. 출석 데이타 삭제\n");
+    printf("\n*** MiniProject <출석 명단>  ***\n1. 출석 데이타 조회 \n2. 출석 데이타 추가\n3. 출석 데이타 수정\n4. 출석 데이타 삭제\n");
     //printf("5. 파일저장\n");
     // printf("6. 이름으로 출석부 검색\n");
     // printf("7. 출석부 검색\n");
@@ -16,46 +16,72 @@ int selectMenu(){
 }
 
 int createList(List *l){
-    printf("출석 날짜는 ? : ");
-    scanf(" %[^\n]",l->date);
-    printf("학생 이름은 ? : ");
-    scanf(" %[^\n]",l->name);
-    printf("출석 여부는 (O,X)? : ");
-    scanf("%c",&l->attendance);
+    while(1){
+        printf("출석 날짜는? yyyy-mm-dd : ");
+        scanf(" %[^\n]",l->date);
+        if(strlen(l->date)>11) printf("yyyy-mm-dd 형식으로 입력해주세요\n");
+        else break;
+    }
+    while(1){
+        printf("학생 이름은? : ");
+        scanf(" %[^\n]",l->name);
+        if(strlen(l->name)>60) printf("60자 이내로 입력해 주세요\n");
+        else break;
+    }
+    while(1){
+        getchar();
+        printf("출석 여부는(O,X)? : ");
+        scanf("%c",&l->attendance);
+        if(l->attendance=='O'||l->attendance=='X'||l->attendance=='o'||l->attendance=='x') break;
+        else printf("잘 못 입력하셨습니다 (O,X) 로 입력해주세요\n");
+    }
+    
     return 1;
-}
+}   
 
 void readList(List l){
     printf("%s %s %c\n",l.date,l.name,l.attendance);
 }
 
 void listList(List* l, int count){
-    lrintf("\nNo Date Name Attendance\n");
+    printf("\nNo Date Name Attendance\n");
     printf("*****************\n");
     for(int i=0; i<count; i++){
-        if(strcmp(l[i].attendance, '-')==0) continue;
+        if(l[i].attendance == '-') continue;
         printf("%d ",i+1);
-        readProduct(l[i]);
+        readList(l[i]);
     }
     printf("\n");
 }
 
-
 int selectDataNo(List* l, int count){
     int no;
-    listProduct(l, count);
+    listList(l, count);
     printf("번호는 (취소 : 0)? ");
     scanf("%d", &no);
     return no;
 }
 
 int updateList(List *l){
-     printf("새로운 출석 날짜는 ? : ");
-    scanf(" %[^\n]",l->date);
-    printf("새로운 학생 이름은 ? : ");
-    scanf(" %[^\n]",l->name);
-    printf("출석 여부는 (O,X)? : ");
-    scanf("%c",&l->attendance);
+    while(1){
+        printf("새로운 출석 날짜는? yyyy-mm-dd : ");
+        scanf(" %[^\n]",l->date);
+        if(strlen(l->date)>11) printf("yyyy-mm-dd 형식으로 입력해주세요\n");
+        else break;
+    }
+    while(1){
+        printf("새로운 학생 이름은? : ");
+        scanf(" %[^\n]",l->name);
+        if(strlen(l->name)>60) printf("60자 이내로 입력해 주세요\n");
+        else break;
+    }
+    while(1){
+        getchar();
+        printf("출석 여부는(O,X)? : ");
+        scanf("%c",&l->attendance);
+        if(l->attendance=='O'||l->attendance=='X'||l->attendance=='o'||l->attendance=='x') break;
+        else printf("잘 못 입력하셨습니다 (O,X) 로 입력해주세요\n");
+    }
     return 1;
 }
 

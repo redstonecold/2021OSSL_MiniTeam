@@ -8,7 +8,7 @@ typedef struct{
 } List;
 
 int createList(List *l);
-void readList(List *l); 
+void readList(List l); 
 void listList(List* l, int count);
 int updateList(List *l);   
 int deleteList(List *l);      

@@ -164,7 +164,7 @@ void searchName(List *l, int count){
     }
     if(scnt == 0) printf("=> 검색된 데이터 없음!");
     printf("\n");
-};
+}
 
 void searchAttendance(List *l, int count){
     char searchA;
@@ -176,7 +176,7 @@ void searchAttendance(List *l, int count){
     printf("\nNo Name Weight Price Star NumOfStar\n");
     printf("================================\n");
     for(int i = 0; i<count; i++){
-        if(l[i].attendance == -1) continue;
+        if(l[i].attendance == '-') continue;
         if(l[i].attendance == searchA){
             printf("%2d ",i+1);
             readList(l[i]);
@@ -185,15 +185,4 @@ void searchAttendance(List *l, int count){
     }
     if(scnt == 0) printf("=> 검색된 데이터 없음!");
     printf("\n");
-};
-    
-    while(1){
-        getchar();
-        printf("출석 여부는 (O,X)? :");
-        scanf("%c",&l->attendance);
-        if(l->attendance=='O'||l->attendance=='X'||l->attendance=='o'||l->attendance=='x') break;
-        else printf("잘못 입력하셧습니다 (O,X) 로 입력해주세요\n");
-        
-    }
-    return 1;
 }

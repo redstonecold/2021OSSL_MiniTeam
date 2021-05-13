@@ -6,9 +6,9 @@ int selectMenu(){
     int snum;
     printf("\n*** MiniProject <출석 명단>  ***\n1. 출석 데이타 조회 \n2. 출석 데이타 추가\n3. 출석 데이타 수정\n4. 출석 데이타 삭제\n");
     //printf("5. 파일저장\n");
-    // printf("6. 이름으로 출석부 검색\n");
-    // printf("7. 출석부 검색\n");
-    //printf("8. 무게검색\n");
+    printf("6. 출석날짜 검색\n");
+    printf("7. 학생이름 검색\n");
+    printf("8. 출석여부 검색\n");
     printf("0. 종료\n\n");
     printf("=> 원하는 메뉴는? ");
     scanf("%d",&snum);
@@ -89,3 +89,66 @@ int deleteList(List *l){
     l->attendance= '-';
     return 1;
 }
+
+void searchDate(List *l, int count){
+    char searchD[20];
+    int scnt = 0;
+
+    printf("검색할 날짜는? : ");
+    scanf(" %[^\n]",searchD);
+
+    printf("\nNo Date Name Attendance\n");
+    printf("================================\n");
+    for(int i = 0; i<count; i++){
+        if(l[i].attendance == '-') continue;
+        if(strcmp(l[i].date, searchD)==0){
+            printf("%2d ",i+1);
+            readList(l[i]);
+            scnt ++;
+        }
+    }
+    if(scnt == 0) printf("=> 검색된 데이터 없음!");
+    printf("\n");
+}
+
+void searchName(List *l, int count){
+    char searchN[60];
+    int scnt = 0;
+
+    printf("검색할 학생 이름은? : ");
+    scanf(" %[^\n]", searchN);
+
+    printf("\nNo Date Name Attendance\n");
+    printf("================================\n");
+    for(int i = 0; i<count; i++){
+        if(l[i].attendance == '-') continue;
+        if(strcmp(l[i].name, searchN)==0){
+            printf("%2d ",i+1);
+            readList(l[i]);
+            scnt ++;
+        }
+    }
+    if(scnt == 0) printf("=> 검색된 데이터 없음!");
+    printf("\n");
+};
+
+void searchAttendance(List *l, int count){
+    char searchA;
+    int scnt = 0;
+
+    printf("출석내역과 결석내역 중 어떤 것을 확인하시겠습니까? (O,X 로 입력) : ");
+    scanf(" %c",&searchA);
+
+    printf("\nNo Name Weight Price Star NumOfStar\n");
+    printf("================================\n");
+    for(int i = 0; i<count; i++){
+        if(l[i].attendance == -1) continue;
+        if(l[i].attendance == searchA){
+            printf("%2d ",i+1);
+            readList(l[i]);
+            scnt ++;
+        }
+    }
+    if(scnt == 0) printf("=> 검색된 데이터 없음!");
+    printf("\n");
+};

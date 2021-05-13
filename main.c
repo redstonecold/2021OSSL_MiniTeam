@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <string.h>
 #include "list.h"
 
 #define DEBUG
@@ -11,8 +13,8 @@ int main(void){
     int count = 0;
     int snum; // selected number in Menu
 
-    count = loadData(Llist);
-    index = count;
+    count = 0;
+    index = 0;
 
     while(1){
         snum = selectMenu();
@@ -47,6 +49,10 @@ int main(void){
                 }
             }
         }
+
+        else if (snum == 6){searchDate(Llist, count);}
+        else if (snum == 7){searchName(Llist,count);}
+        else if (snum == 8){searchAttendance(Llist,count);}
     }
     printf("종료됨!\n");
 

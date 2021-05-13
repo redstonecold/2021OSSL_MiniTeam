@@ -2,7 +2,7 @@
 #include <string.h>
 
 typedef struct{
-    char date[10];
+    char date[20];
     char name[60]; //이름으로
     char attendance;
 } List;

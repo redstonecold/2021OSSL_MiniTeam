@@ -5,9 +5,9 @@
 int selectMenu(){
     int snum;
     printf("\n*** MiniProject <출석 명단>  ***\n1.출석 데이타 조회 \n2. 출석 데이타 추가\n3. 출석 데이타 수정\n4. 출석 데이타 삭제\n");
-    //printf("5. 파일저장\n");
-    printf("6. 이름으로 출석부 검색\n");
-    printf("7. 출석부 검색\n");
+    printf("5. 파일저장\n");
+    //printf("6. 이름으로 출석부 검색\n");
+    //printf("7. 출석부 검색\n");
     //printf("8. 무게검색\n");
     printf("0. 종료\n\n");
     printf("=> 원하는 메뉴는? ");
@@ -16,145 +16,109 @@ int selectMenu(){
 }
 
 int createList(List *l){
-    printf("출석 날짜는 ? : ");
-    scanf(" %[^\n]",l->date);
-    printf("학생 이름은 ? : ");
+    while(1){
+        printf("출석 날짜는 ? yyyy-mm-dd:");
+        scanf(" %[^\n]",l->date);
+        if(strlen(l->date)>11) printf(" yyyy-mm-dd 형식으로 입력해주세요\n");
+        else break;
+    }
+    while(1){
+    printf("학생 이름은 ? :");
     scanf(" %[^\n]",l->name);
-    printf("출석 여부는 (O,X)? : ");
-    scanf("%c",&l->attendance);
+    if(strlen(l->name)>60) printf("60자 이내로 입력해 주세요\n");
+    else break;
+    }
+    
+    while(1){
+        printf("출석 여부는 (O,X)? :");
+        getchar();
+        scanf("%c",&l->attendance);
+        if(l->attendance=='O'||l->attendance=='X'||l->attendance=='o'||l->attendance=='x') break;
+        else printf("잘못 입력하셧습니다 (O,X) 로 입력해주세요\n");
+    }
+    
     return 1;
-}
-/*
-void readList(List *l){
-    printf("%s %d %d %d %d\n",p.name,p.weight,p.price,p.star,p.numOfStar);
+}   
+
+void readList(List l){
+    printf("%s %s %c\n",l.date,l.name,l.attendance);
 }
 
-void listProduct(Product* p, int count){
-    printf("\nNo Name Weight Price Star NumOfStar\n");
+void listList(List* l, int count){
+    printf("\nNo Date Name Attendance\n");
     printf("*****************\n");
     for(int i=0; i<count; i++){
-        if(p[i].price == -1) continue;
+        if(l[i].attendance == '-') continue;
         printf("%d ",i+1);
-        readProduct(p[i]);
+        readList(l[i]);
     }
     printf("\n");
 }
-*/
+
 int selectDataNo(List* l, int count){
     int no;
-    listProduct(l, count);
+    listList(l, count);
     printf("번호는 (취소 : 0)? ");
     scanf("%d", &no);
     return no;
 }
 
 int updateList(List *l){
-     printf("새로운 출석 날짜는 ? : ");
-    scanf(" %[^\n]",l->date);
-    printf("새로운 학생 이름은 ? : ");
-    scanf(" %[^\n]",l->name);
-    printf("출석 여부는 (O,X)? : ");
-    scanf("%c",&l->attendance);
+    while(1){
+        printf("새로운 출석 날짜는 ?yyyy-mm-dd :");
+        scanf(" %[^\n]",l->date);
+        if(strlen(l->date)>11) printf(" yyyy-mm-dd 형식으로 입력해주세요\n");
+        else break;
+    }
+    while(1){
+        printf("새로운 학생 이름은 ? :");
+        scanf(" %[^\n]",l->name);
+        if(strlen(l->name)>60) printf("60자 이내로 입력해 주세요\n");
+        else break;
+    }
+    
+    while(1){
+        getchar();
+        printf("출석 여부는 (O,X)? :");
+        scanf("%c",&l->attendance);
+        if(l->attendance=='O'||l->attendance=='X'||l->attendance=='o'||l->attendance=='x') break;
+        else printf("잘못 입력하셧습니다 (O,X) 로 입력해주세요\n");
+        
+    }
     return 1;
 }
+int loadData(List *l){
+    FILE *fp;
+    fp = fopen("attendance.txt","rt");
+    int i =0;
+    if(fp == NULL){
+        printf("=> 파일 없음\n");
+    }
+    else {
+        for (;i+100;i++){
+            fscanf(fp, " %[^,], %[^,], %c",l[i].date,l[i].name, &l[i].attendance);
+            if(feof(fp)) break;
+        }
+        fclose(fp);
+        printf("=> 로딩 성공\n");
 
+    }return i;
+    
+    
+}
+
+void saveData(List *l, int count){
+    FILE *fp;
+    fp = fopen("attendance.txt","wt");
+    for(int i =0;i<count;i++){
+        if(l[i].attendance=='-') continue;
+        fprintf(fp,"%s, %s, %c\n",l[i].date,l[i].name,l[i].attendance);
+    }
+        fclose(fp);
+        printf("저장됨!\n");
+    
+}
 int deleteList(List *l){
     l->attendance= '-';
     return 1;
 }
-
-
-/*
-int loadData(Product *p){
-    FILE *fp;
-    fp = fopen("manager.txt","rt");
-    int i = 0;
-
-    if(fp == NULL){
-        printf("=>파일 없음\n");
-    }
-    else {
-        for(; i<100; i++){
-            fscanf(fp," %[^,], %d %d %d %d",p[i].name, &p[i].weight, &p[i].price, &p[i].star, &p[i].numOfStar);
-            if (feof(fp)) break;
-        }
-        fclose(fp);
-        printf("=> 로딩 성공!\n");
-    }
-    return i;
-}
-
-void saveData(Product *p, int count){
-    FILE *fp;
-    fp = fopen("manager.txt","wt");
-
-    for(int i=0; i<count; i++){
-        if(p[i].price == -1) continue;
-        fprintf(fp,"%s, %d %d %d %d\n",p[i].name,p[i].weight,p[i].price,p[i].star,p[i].numOfStar);
-    }
-    fclose(fp);
-    printf("저장됨!\n");
-}
-
-void searchName(List *p, int count){
-    char searchn[20];
-    int scnt = 0;
-
-    printf("검색할 제품 이름? ");
-    scanf(" %s",searchn);
-
-    printf("\nNo Name Weight Price Star NumOfStar\n");
-    printf("================================\n");
-    for(int i = 0; i<count; i++){
-        if(p[i].price == -1) continue;
-        if(strstr(p[i].name, searchn)){
-            printf("%2d ",i+1);
-            readProduct(p[i]);
-            scnt ++;
-        }
-    }
-    if(scnt == 0) printf("=> 검색된 데이터 없음!");
-    printf("\n");
-}
-
-void searchPrice(Product *p, int count){
-    int searchp;
-    int scnt = 0;
-
-    printf("검색할 제품 가격? ");
-    scanf("%d", &searchp);
-
-    printf("\nNo Name Weight Price Star NumOfStar\n");
-    printf("================================\n");
-    for(int i = 0; i<count; i++){
-        if(p[i].price == -1) continue;
-        if(p[i].price == searchp){
-            printf("%2d ",i+1);
-            readProduct(p[i]);
-            scnt ++;
-        }
-    }
-    if(scnt == 0) printf("=> 검색된 데이터 없음!");
-    printf("\n");
-};
-void searchWeight(Product *p, int count){
-    int searchw;
-    int scnt = 0;
-
-    printf("검색할 제품 무게? ");
-    scanf("%d",&searchw);
-
-    printf("\nNo Name Weight Price Star NumOfStar\n");
-    printf("================================\n");
-    for(int i = 0; i<count; i++){
-        if(p[i].weight == -1) continue;
-        if(p[i].weight == searchw){
-            printf("%2d ",i+1);
-            readProduct(p[i]);
-            scnt ++;
-        }
-    }
-    if(scnt == 0) printf("=> 검색된 데이터 없음!");
-    printf("\n");
-};
-*/

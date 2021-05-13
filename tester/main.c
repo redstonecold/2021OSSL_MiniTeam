@@ -13,8 +13,8 @@ int main(void){
     int count = 0;
     int snum; // selected number in Menu
 
-    count = 0;
-    index = 0;
+    count = loadData(Llist);
+    index = count;
 
     while(1){
         snum = selectMenu();
@@ -49,12 +49,9 @@ int main(void){
                 }
             }
         }
-	else if(snum == 5){
+        else if(snum == 5){
             saveData(Llist,count);
         }
-        else if (snum == 6){searchDate(Llist, count);}
-        else if (snum == 7){searchName(Llist,count);}
-        else if (snum == 8){searchAttendance(Llist,count);}
     }
     printf("종료됨!\n");
 

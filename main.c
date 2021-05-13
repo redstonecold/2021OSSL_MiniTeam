@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <string.h>
 #include "list.h"
 
 #define DEBUG
@@ -46,6 +48,9 @@ int main(void){
                     printf("=> 삭제됨!\n");
                 }
             }
+        }
+        else if(snum == 5){
+            saveData(Llist,count);
         }
     }
     printf("종료됨!\n");

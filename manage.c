@@ -173,7 +173,7 @@ void searchAttendance(List *l, int count){
     printf("출석내역과 결석내역 중 어떤 것을 확인하시겠습니까? (O,X 로 입력) : ");
     scanf(" %c",&searchA);
 
-    printf("\nNo Name Weight Price Star NumOfStar\n");
+    printf("\nNo Date Name Attendance\n");
     printf("================================\n");
     for(int i = 0; i<count; i++){
         if(l[i].attendance == '-') continue;

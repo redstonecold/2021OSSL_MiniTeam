@@ -10,7 +10,7 @@ int main(void){
 
     List Llist[100];
     int index = 0;
-    int count = 0;
+    int count = loadData(Llist);
     int snum; // selected number in Menu
 
     count = 0;
